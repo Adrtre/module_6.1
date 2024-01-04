@@ -21,10 +21,10 @@ public class RpsRunner {
         while (!end) {
 
             games.playerMove = scanner.nextInt();
-            if (games.playerMove == 9) {
+            if (games.playerMove == 'x') {
                 end = true;
                 break;
-            } else if (games.playerMove == 8) {
+            } else if (games.playerMove == 'n') {
                 games = new RpsGame(playerName, roundsToWin);
                 DisplayGameInfo.displayGameInfo(roundsToWin);
                 continue;
