@@ -5,46 +5,41 @@ import java.util.Scanner;
 public class RpsRunner {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Witaj w grze P K N");
+        ClassLoader classLoader = RpsRunner.class.getClassLoader();
+        //InputStream inputStream = classLoader.getResourceAsStream("logo.txt");
+        Logo.display();
         System.out.println("Podaj swoj nick");
         String playerName = "Adrian";
         System.out.println("Podaj liczbę rund ");
 
-//        try {
-            int roundsToWin = scanner.nextInt();
-            RpsGams games = new RpsGams(playerName, roundsToWin);
-            games.displayGameInfo();
 
-            boolean end = false;
-            while (!end) {
-//                try {
-                    games.playerMove = scanner.nextInt();
-                    if (games.playerMove == 9) {
-                        end = true;
-                        break;
-                    } else if (games.playerMove == 8) {
-                        games = new RpsGams(playerName, roundsToWin);
-                        games.displayGameInfo();
-                        continue;
-                    }
+        int roundsToWin = scanner.nextInt();
+        RpsGame games = new RpsGame(playerName, roundsToWin);
+        DisplayGameInfo.displayGameInfo(roundsToWin);
 
-                    games.printRps(games.playerMove);
-                    games.playRound();
-                    if (games.playerScore == roundsToWin || games.computerScore == roundsToWin) {
-                        end = true;
-                    }
+        boolean end = false;
+        while (!end) {
 
-//                } catch (InputMismatchException e) {
-//                    System.out.println("Podano niepoprawne dane. Spróbuj ponownie.");
-//                    scanner.next();
-                }
-        games.isEnd();
+            games.playerMove = scanner.nextInt();
+            if (games.playerMove == 9) {
+                end = true;
+                break;
+            } else if (games.playerMove == 8) {
+                games = new RpsGame(playerName, roundsToWin);
+                DisplayGameInfo.displayGameInfo(roundsToWin);
+                continue;
             }
 
-//        }
-//        catch (InputMismatchException e) {
-//            System.out.println("Podano niepoprawne dane. Koniec gry.");
-//        }
-    }
+            games.printRps(games.playerMove);
+            PlayRound.playRound(playerName, games.playerScore, games.computerScore, games.playerMove);
+            if (games.playerScore == roundsToWin || games.computerScore == roundsToWin) {
+                end = true;
+            }
+
+        }
+
+        EndGames.isEnd(games.playerScore, roundsToWin , playerName , games.computerScore);
+    }}
+
+
 
