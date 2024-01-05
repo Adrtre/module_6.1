@@ -11,9 +11,8 @@ public class RpsRunner {
         System.out.println("Podaj swoj nick");
         String playerName = "Adrian";
         System.out.println("Podaj liczbę rund ");
-
-
         int roundsToWin = scanner.nextInt();
+
         RpsGame games = new RpsGame(playerName, roundsToWin);
         DisplayGameInfo.displayGameInfo(roundsToWin);
 
@@ -37,7 +36,6 @@ public class RpsRunner {
             }
 
         }
-
         EndGames.isEnd(games.playerScore, roundsToWin , playerName , games.computerScore);
     }}
 

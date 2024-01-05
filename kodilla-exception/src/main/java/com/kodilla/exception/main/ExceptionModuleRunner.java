@@ -6,8 +6,10 @@ import com.kodilla.exception.io.FileReaderException;
 public class ExceptionModuleRunner {
 
     public static void main(String[] args) {
-        FileReader fileReader = new FileReader();
-
+          FileReader fileReader = new FileReader();
+//        FileReader fileReader1 = new FileReader();
+//        fileReader.readFile();
+//        fileReader.readFile1();
         try {
             fileReader.readFile();
         } catch (FileReaderException e) {
