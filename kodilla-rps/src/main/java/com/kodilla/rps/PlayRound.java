@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class PlayRound {
 
-    public static void playRound(String playerName , int playerScore, int computerScore , int playerMove) {
+    public static void playRound(String playerName , int playerScore, int computerScore , char playerMove) {
 
         Random random = new Random();
         int computerMove = random.nextInt(3) + 1;

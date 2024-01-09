@@ -2,17 +2,17 @@ package com.kodilla.rps;
 
 public class RpsGame {
 
-    public String playerName;
+    public Player player;
     public int roundsToWin;
-    public static char playerScore;
-    public static char computerScore;
+    public static int playerScore;
+    public static int  computerScore;
 
-    int playerMove;
-    public RpsGame(String playerName, int roundsToWin ) {
-        this.playerName = playerName;
+    char playerMove;
+    public RpsGame(Player player, int roundsToWin ) {
+        this.player = player;
         this.roundsToWin = roundsToWin;
-        this.playerScore = 0;
-        this.computerScore = 0; //<--- czemu poprawiło mi na 0 ? i ...
+
+
 
     }
     public static String printRps(int playerChoice) {

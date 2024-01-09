@@ -2,41 +2,41 @@ package com.kodilla.rps;
 
 import java.util.Scanner;
 
+import static com.kodilla.rps.IOInterface.*;
+
 public class RpsRunner {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ClassLoader classLoader = RpsRunner.class.getClassLoader();
-        //InputStream inputStream = classLoader.getResourceAsStream("logo.txt");
-        Logo.display();
+        logo();
         System.out.println("Podaj swoj nick");
         String playerName = "Adrian";
-        System.out.println("Podaj liczbę rund ");
-        int roundsToWin = scanner.nextInt();
 
-        RpsGame games = new RpsGame(playerName, roundsToWin);
-        DisplayGameInfo.displayGameInfo(roundsToWin);
+
+        int roundsToWin = getRoundsCount();
+        Player player = new HumanPlayer();
+        player.setName(playerName);
+        Player computerPlayer = new ComputerPlayer();
+        RpsGame rpsgames = new RpsGame(player, roundsToWin);
+        displayGameInfo(roundsToWin);
 
         boolean end = false;
         while (!end) {
 
-            games.playerMove = scanner.nextInt();
-            if (games.playerMove == 'x') {
-                end = true;
-                break;
-            } else if (games.playerMove == 'n') {
-                games = new RpsGame(playerName, roundsToWin);
-                DisplayGameInfo.displayGameInfo(roundsToWin);
-                continue;
-            }
+            boolean validMove = false;
+            char playerMove = player.getMove();
+            scanner.nextLine();
+            end = handleSpecialMoves(rpsgames, playerName, roundsToWin , player, playerMove);
 
-            games.printRps(games.playerMove);
-            PlayRound.playRound(playerName, games.playerScore, games.computerScore, games.playerMove);
-            if (games.playerScore == roundsToWin || games.computerScore == roundsToWin) {
+
+            rpsgames.printRps(player.getMove());
+            PlayRound.playRound(playerName, rpsgames.playerScore, rpsgames.computerScore, rpsgames.playerMove);
+            if (rpsgames.playerScore == roundsToWin || rpsgames.computerScore == roundsToWin) {
                 end = true;
             }
 
         }
-        EndGames.isEnd(games.playerScore, roundsToWin , playerName , games.computerScore);
+        IOInterface.isEnd(rpsgames.playerScore, roundsToWin , playerName , rpsgames.computerScore);
     }}
 
 

@@ -1,3 +1,4 @@
+
 package com.kodilla.exception.test;
 
 public class ExceptionHandling {
@@ -6,14 +7,12 @@ public class ExceptionHandling {
         SecondChallenge secondChallenge = new SecondChallenge();
 
         try {
-            String result = secondChallenge.probablyIWillThrowException(1.5, 1.5);
+            String result = secondChallenge.probablyIWillThrowException(0.5, 3);
             System.out.println(result);
         } catch (Exception e) {
-            System.out.println("Złapany wyjątek: " + e.getMessage());
+            System.out.println("Exception caught: " + e.getMessage());
         } finally {
-            System.out.println("finally");
+            System.out.println("This will be executed regardless of the exception");
         }
     }
-
-
 }
