@@ -1,6 +1,6 @@
 public class AdditionalTask {
     public static void main(String[] args) {
-        int n = 10;
+        int n = 58;
         long resolut = calculateFactoria(n);
         System.out.println(resolut);
     }
@@ -11,7 +11,7 @@ public class AdditionalTask {
             return 1;
         }
         else{
-        return n * calculateFactoria(n - 1);
+        return n * calculateFactoria(n-1);
     }
 
 }}
