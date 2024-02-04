@@ -1,4 +1,4 @@
-package com.example.kodillaspring;
+package com.kodilla.spring;
 
 import com.kodilla.spring.shape.Shape;
 import org.junit.jupiter.api.Test;
