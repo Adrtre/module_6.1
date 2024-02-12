@@ -8,19 +8,30 @@ public class LoggerTestSuite {
     @Test
     void testGetLastLoad(){
         //Given
-        Logger logger = Logger.INSTANCE;
+        Logger logger = Logger.getInstance();
         String logMessage = "This is a massage for test ";
         //When
         logger.log(logMessage);
         String lastlog = logger.getLastLog();
         //Given
         Assertions.assertEquals(logMessage , lastlog);
-
-
     }
+    @Test
+    void testGetLastLogAfterMultipleLogs() {
+        // Given
+        Logger logger = Logger.getInstance();
+        String logMessage1 = "First log ";
+        String logMessage2 = "Second log ";
 
+        // When
+        logger.log(logMessage1);
+        logger.log(logMessage2);
+        String lastLog = logger.getLastLog();
+
+        // Then
+        Assertions.assertEquals(logMessage2, lastLog);
+    }
 }
-
 
 
 
