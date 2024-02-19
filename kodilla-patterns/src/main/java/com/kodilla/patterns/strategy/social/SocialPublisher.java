@@ -1,2 +1,5 @@
-package com.kodilla.patterns.strategy.social;public class SocialPublisher {
+package com.kodilla.patterns.strategy.social;
+
+public interface SocialPublisher {
+    void share();
 }
