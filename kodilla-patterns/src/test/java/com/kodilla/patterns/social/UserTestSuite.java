@@ -1,36 +1,31 @@
 package com.kodilla.patterns.social;
 
-import com.kodilla.patterns.strategy.social.*;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserTestSuite {
 
     @Test
-    public void testDefaultSharingStrategies() {
+    void testDefaultSharingStrategies() {
         // Given
-        User millenial = new Millenials("MillenialUser");
-        User yGeneration = new YGeneration("YGenerationUser");
-        User zGeneration = new ZGeneration("ZGenerationUser");
+        User millenial = new Millenials("John");
+        User yGeneration = new YGeneration("Anna");
+        User zGeneration = new ZGeneration("Mike");
 
-        // When
-        millenial.sharePost();
-        yGeneration.sharePost();
-        zGeneration.sharePost();
-
+        // When & Then
+        assertEquals("Sharing on Facebook", millenial.sharePost());
+        assertEquals("Sharing on Twitter", yGeneration.sharePost());
+        assertEquals("Sharing on Snapchat", zGeneration.sharePost());
     }
 
     @Test
-    public void testIndividualSharingStrategy() {
+    void testIndividualSharingStrategy() {
         // Given
-        User user = new User("CustomUser", new FacebookPublisher());
+        User millenial = new Millenials("John");
+        millenial.setSocialPublisher(new TwitterPublisher());
 
-        User user2 = new User("CustomUser", new SnapchatPublisher());
-
-        // When
-        user.sharePost();
-
-        user2.sharePost();
-
-
+        // When & Then
+        assertEquals("Sharing on Twitter", millenial.sharePost());
     }
 }
