@@ -1,4 +1,4 @@
-package com;
+package com.kodilla.hibernate.task;
 
 import jakarta.persistence.*;
 import org.jetbrains.annotations.NotNull;

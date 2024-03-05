@@ -10,8 +10,12 @@ public class User {
         this.socialPublisher = socialPublisher;
     }
 
-    public void sharePost() {
-        System.out.print("User " + username + " is ");
-        socialPublisher.share();
+    public void setSocialPublisher(SocialPublisher socialPublisher) {
+        this.socialPublisher = socialPublisher;
+    }
+
+    public String sharePost() {
+        return socialPublisher.share();
+
     }
 }
