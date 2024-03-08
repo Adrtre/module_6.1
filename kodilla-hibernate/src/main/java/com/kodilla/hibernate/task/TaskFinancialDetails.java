@@ -1,7 +1,7 @@
 package com.kodilla.hibernate.task;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
 
