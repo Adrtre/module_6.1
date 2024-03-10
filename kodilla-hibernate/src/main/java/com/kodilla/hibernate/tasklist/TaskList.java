@@ -1,11 +1,12 @@
-package com.kodilla.hibernate.task;
+package com.kodilla.hibernate.tasklist;
+
 
 import jakarta.persistence.*;
-import org.jetbrains.annotations.NotNull;
 
 @Entity
 @Table(name = "TASKLISTS")
 public class TaskList {
+
     private int id;
     private String listName;
     private String description;
@@ -20,7 +21,6 @@ public class TaskList {
 
     @Id
     @GeneratedValue
-    @NotNull
     @Column(name = "ID", unique = true)
     public int getId() {
         return id;
