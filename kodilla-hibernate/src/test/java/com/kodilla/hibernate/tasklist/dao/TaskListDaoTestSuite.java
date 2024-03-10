@@ -19,7 +19,8 @@ class TaskListDaoTestSuite {
 
     @Test
     void testFindByListName() {
-        // Given
+        // Clean up
+        taskListDao.deleteAll();
         // Given
         TaskList xboxList = new TaskList("Xbox", "List for Xbox ");
         TaskList pcList = new TaskList("PC", "List for PC tasks");
