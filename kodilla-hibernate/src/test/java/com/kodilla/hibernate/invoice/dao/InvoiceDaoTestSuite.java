@@ -49,7 +49,7 @@ class InvoiceDaoTestSuite {
         // Then
         assertNotNull(invoiceId);
 
-        // Clean
-        invoiceDao.deleteById(invoiceId);
+//        // Clean
+//        invoiceDao.deleteById(invoiceId);
     }
 }

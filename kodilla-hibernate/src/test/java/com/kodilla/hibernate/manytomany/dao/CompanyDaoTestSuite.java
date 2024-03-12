@@ -6,57 +6,51 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class CompanyDaoTestSuite {
 
     @Autowired
     private CompanyDao companyDao;
+    @Autowired
+    private EmployeeDao employeeDao;
 
     @Test
-    void testSaveManyToMany() {
-        //Given
-        Employee johnSmith = new Employee("John", "Smith");
-        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
-        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+    void testFindByFirstThreeCharacters() {
+        // Given
+        Company company1 = new Company("AAA Company");
+        Company company2 = new Company("AAB Corporation");
+        Company company3 = new Company("BBB Solutions");
 
-        Company softwareMachine = new Company("Software Machine");
-        Company dataMaesters = new Company("Data Maesters");
-        Company greyMatter = new Company("Grey Matter");
+        companyDao.save(company1);
+        companyDao.save(company2);
+        companyDao.save(company3);
 
-        softwareMachine.getEmployees().add(johnSmith);
-        dataMaesters.getEmployees().add(stephanieClarckson);
-        dataMaesters.getEmployees().add(lindaKovalsky);
-        greyMatter.getEmployees().add(johnSmith);
-        greyMatter.getEmployees().add(lindaKovalsky);
+        // When
+        List<Company> companiesStartingWithAA = companyDao.findByFirstThreeCharacters("AAA");
 
-        johnSmith.getCompanies().add(softwareMachine);
-        johnSmith.getCompanies().add(greyMatter);
-        stephanieClarckson.getCompanies().add(dataMaesters);
-        lindaKovalsky.getCompanies().add(dataMaesters);
-        lindaKovalsky.getCompanies().add(greyMatter);
+        // Then
+        assertEquals(1, companiesStartingWithAA.size());
+    }
 
-        //When
-        companyDao.save(softwareMachine);
-        int softwareMachineId = softwareMachine.getId();
-        companyDao.save(dataMaesters);
-        int dataMaestersId = dataMaesters.getId();
-        companyDao.save(greyMatter);
-        int greyMatterId = greyMatter.getId();
+    @Test
+    void testFindByLastname() {
+        // Given
+        Employee employee1 = new Employee("John", "Smith");
+        Employee employee2 = new Employee("Alice", "Smith");
+        Employee employee3 = new Employee("Bob", "Brown");
 
-        //Then
-        assertNotEquals(0, softwareMachineId);
-        assertNotEquals(0, dataMaestersId);
-        assertNotEquals(0, greyMatterId);
+        employeeDao.save(employee1);
+        employeeDao.save(employee2);
+        employeeDao.save(employee3);
 
-        //CleanUp
-        try {
-            companyDao.deleteById(softwareMachineId);
-            companyDao.deleteById(dataMaestersId);
-            companyDao.deleteById(greyMatterId);
-        } catch (Exception e) {
-            //do nothing
-        }
+        // When
+        List<Employee> employeesWithLastNameSmith = employeeDao.findByLastname("Smith");
+
+        // Then
+        assertEquals(2, employeesWithLastNameSmith.size());
     }
 }
